@@ -8,7 +8,7 @@ describe: Tushare数据源
 import os
 import czsc
 import pandas as pd
-from czsc import Freq, RawBar
+from czsc import Freq, RawBar, data
 from typing import List
 from tqdm import tqdm
 from loguru import logger
@@ -18,6 +18,7 @@ from loguru import logger
 
 cache_path = os.getenv("TS_CACHE_PATH", os.path.expanduser("~/.ts_data_cache"))
 dc = czsc.DataClient(url="http://api.tushare.pro", cache_path=cache_path)
+tdc = data.TsDataCache(data_path=cache_path)
 
 
 def format_kline(kline: pd.DataFrame, freq: Freq) -> List[RawBar]:
